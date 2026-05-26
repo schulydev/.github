@@ -34,25 +34,72 @@ A modern, mobile-first alternative to the official Schulnetz client — built ar
 
 ## Architecture at a glance
 
-```
-        ┌────────────┐
-        │  Schuly    │  Flutter mobile app
-        │  (mobile)  │
-        └─────┬──────┘
-              │ REST / OpenAPI
-              ▼
-   ┌────────────────────┐       ┌────────────────────────────┐
-   │   SchulyBackend    │◄──────│  SchulyPluginAbstractions  │
-   │   ASP.NET Core     │       │  (NuGet contract)          │
-   │   PostgreSQL + EF  │       └─────────────▲──────────────┘
-   │   Plugin host      │                     │ implements
-   └─────────▲──────────┘                     │
-             │                       ┌────────┴────────┐
-             │ discovers + runs ────►│  SchulyPlugins  │
-             │                       │  (Schulware, …) │
-             │                       └─────────────────┘
-             ▼
-       OIDC provider
+```mermaid
+---
+config:
+  layout: elk
+  look: neo
+  theme: base
+  themeVariables:
+    edgeLabelBackground: '#ffffff'
+    tertiaryColor: '#ffffff'
+    tertiaryTextColor: '#000000'
+    tertiaryBorderColor: '#ffffff'
+  flowchart:
+    nodeSpacing: 50
+    rankSpacing: 70
+---
+flowchart TB
+  %% === Clients ===
+  Schuly["Schuly · Flutter"]:::client
+  WebUI["Web UI · Angular"]:::clientPlanned
+
+  %% === Backend ===
+  Backend["SchulyBackend<br/><i>ASP.NET Core</i>"]:::backend
+  DB@{ shape: cyl, label: "PostgreSQL" }
+
+  %% === Plugin system ===
+  Abstractions["SchulyPluginAbstractions<br/><i>NuGet</i>"]:::contract
+
+  subgraph plugins["SchulyPlugins"]
+    direction TB
+    Example["Plugin.Example"]:::plugin
+    Schulware["Plugin.Schulware"]:::plugin
+  end
+  class plugins region
+
+  %% === External ===
+  OIDC["OIDC Provider"]:::ext
+  SchulwareAPI["SchulwareAPI"]:::ext
+  Schulnetz["Schulnetz"]:::ext
+
+  %% === Edges ===
+  Schuly -->|REST| Backend
+  WebUI -->|REST| Backend
+  Schuly <-->|auth| OIDC
+  WebUI <-->|auth| OIDC
+  Backend <-->|validate| OIDC
+  Backend --- DB
+  Backend -. depends on .-> Abstractions
+  Backend ==>|runs| plugins
+  Example -. implements .-> Abstractions
+  Schulware -. implements .-> Abstractions
+  Schulware --> SchulwareAPI
+  SchulwareAPI --> Schulnetz
+  class DB db
+
+  %% === Arrows ===
+  linkStyle default stroke:#9ca3af,stroke-width:1.5px,color:#000000
+
+  %% === Node Styles ===
+  classDef client        fill:#3da8ff,stroke:#1c6ec0,color:#fff
+  classDef clientPlanned fill:#3da8ff,stroke:#1c6ec0,color:#fff,stroke-dasharray: 5 4
+  classDef backend       fill:#512bd4,stroke:#341a8a,color:#fff
+  classDef db            fill:#336791,stroke:#1e3f5c,color:#fff
+  classDef contract      fill:#a36ee0,stroke:#6e44b8,color:#fff
+  classDef plugin        fill:#ffc658,stroke:#c89a3e,color:#000
+  classDef ext           fill:#6c757d,stroke:#3d4449,color:#fff
+  classDef region        fill:transparent,stroke:#888,color:#888,stroke-dasharray: 4 4
 ```
 
 ## Want to contribute?
