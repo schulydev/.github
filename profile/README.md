@@ -5,7 +5,7 @@
 <h1 align="center">Schuly</h1>
 
 <p align="center">
-  <strong>The better Schulnetz app — open-source, mobile-first, extensible.</strong>
+  <strong>The better Schulnetz app - open-source, mobile-first, extensible.</strong>
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 
 ## What is Schuly?
 
-A modern, mobile-first alternative to the official Schulnetz client — built around a clean Flutter UI, a clean-architecture C# backend, and a plugin runtime that lets new school systems plug in without touching the core.
+A modern, mobile-first alternative to the official Schulnetz client - built around a clean Flutter UI, a clean-architecture C# backend, and a plugin runtime that lets new school systems plug in without touching the core.
 
 > Schuly is **NOT** affiliated with, endorsed by, or connected to Schulnetz or Centerboard AG.
 
@@ -26,9 +26,9 @@ A modern, mobile-first alternative to the official Schulnetz client — built ar
 
 | Repo | Stack | Purpose |
 |---|---|---|
-| [**Schuly**](https://github.com/schulydev/Schuly) | Flutter / Dart | The mobile app — iOS + Android |
+| [**Schuly**](https://github.com/schulydev/Schuly) | Flutter / Dart | The mobile app - iOS + Android |
 | [**SchulyBackend**](https://github.com/schulydev/SchulyBackend) | C# / ASP.NET Core | API + domain logic + plugin host |
-| [**SchulyPluginAbstractions**](https://github.com/schulydev/SchulyPluginAbstractions) | C# / NuGet | Stable plugin contract — implement this to write a plugin |
+| [**SchulyPluginAbstractions**](https://github.com/schulydev/SchulyPluginAbstractions) | C# / NuGet | Stable plugin contract - implement this to write a plugin |
 | [**SchulyPlugins**](https://github.com/schulydev/SchulyPlugins) | C# | Official plugins (Schulware, Example, ...) |
 | [**SchulyWebsite**](https://github.com/schulydev/SchulyWebsite) | Angular | Landing site at [schuly.dev](https://schuly.dev) |
 
