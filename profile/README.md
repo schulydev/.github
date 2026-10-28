@@ -27,7 +27,7 @@ A modern, mobile-first alternative to the official Schulnetz client - built arou
 | Repo | Stack | Purpose |
 |---|---|---|
 | [**Schuly**](https://github.com/schulydev/Schuly) | Flutter / Dart | The mobile app - iOS + Android |
-| [**SchulyBackend**](https://github.com/schulydev/SchulyBackend) | C# / ASP.NET Core | API + domain logic + plugin host |
+| [**SchulyServer**](https://github.com/schulydev/SchulyServer) | C# / ASP.NET Core | API + domain logic + plugin host |
 | [**SchulyPluginAbstractions**](https://github.com/schulydev/SchulyPluginAbstractions) | C# / NuGet | Stable plugin contract - implement this to write a plugin |
 | [**SchulyPlugins**](https://github.com/schulydev/SchulyPlugins) | C# | Official plugins (Schulware, Example, ...) |
 | [**SchulyWebsite**](https://github.com/schulydev/SchulyWebsite) | Angular | Landing site at [schuly.dev](https://schuly.dev) |
