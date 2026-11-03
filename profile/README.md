@@ -5,7 +5,7 @@
 <h1 align="center">Schuly</h1>
 
 <p align="center">
-  <strong>The better Schulnetz app - open-source, mobile-first, extensible.</strong>
+  <strong>The better alternative to Schulnetz - open-source, mobile-first, extensible.</strong>
 </p>
 
 <p align="center">
